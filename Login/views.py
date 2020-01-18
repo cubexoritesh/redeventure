@@ -36,12 +36,12 @@ class Register(APIView):
 
             register_user = User.objects.create(username=serializer.data['username'],
                                                 email=serializer.data['email'])
-            register_user.set_password(password=serializer.data['password'])
+            register_user.set_password(serializer.data['password'])
             register_user.save()
 
-            if register_user():
+            if register_user:
                 return Response(status=200,
-                                data={'status': 'Registration Success', 'user_exist': False, 'key': user.get_token()})
+                                data={'status': 'Registration Success', 'user_exist': False, 'key': register_user.get_token()})
             else:
                 return Response(status=400, data={'error': 'User Already Registered'})
         else:
