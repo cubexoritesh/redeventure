@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'Login',
 
+
 ]
 AUTH_USER_MODEL = 'Login.User'
 
